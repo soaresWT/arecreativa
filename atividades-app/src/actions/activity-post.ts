@@ -12,7 +12,6 @@ export default async function activityPost(state: {}, formData: FormData) {
   const title = formData.get("title") as string | null;
   const summary = formData.get("summary") as string | null;
   const objectives = formData.get("objectives") as string | null;
-
   const bncc_skills_string = formData.get("bncc_skills") as string | null;
   let bncc_skills: string[] | null = null;
   if (bncc_skills_string) {
@@ -29,6 +28,7 @@ export default async function activityPost(state: {}, formData: FormData) {
   }
 
   const total_time = formData.get("total_time") as string | null;
+
   const required_resources = formData.get("required_resources") as
     | string
     | null;
@@ -36,9 +36,17 @@ export default async function activityPost(state: {}, formData: FormData) {
     | string
     | null;
   const user_id = formData.get("user_id") as string | null;
-
+  if (
+    !title ||
+    !objectives ||
+    !bncc_skills ||
+    !total_time ||
+    !required_resources ||
+    !step_by_step_guide
+  ) {
+    return { data: null, ok: false, error: "Preencha todos os campos." };
+  }
   try {
-    console.log("token:");
     const { url } = ACTIVITY_POST();
     const response = await fetch(url, {
       method: "POST",
@@ -50,14 +58,13 @@ export default async function activityPost(state: {}, formData: FormData) {
         title,
         summary,
         objectives,
-        bncc_skills_string,
+        bncc_skills,
         total_time,
         required_resources,
         step_by_step_guide,
         user_id,
       }),
     });
-    console.log("resposta:", response);
     if (!response.ok) throw new Error("Erro ao cadastrar a atividade.");
 
     const data = await response.json();

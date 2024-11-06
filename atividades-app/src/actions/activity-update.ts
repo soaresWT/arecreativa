@@ -34,18 +34,6 @@ export default async function updateActivity(id: string, formData: FormData) {
   const user_id = formData.get("user_id") as string | null;
 
   try {
-    if (
-      !title ||
-      !summary ||
-      !objectives ||
-      !bncc_skills ||
-      !total_time ||
-      !required_resources ||
-      !step_by_step_guide
-    ) {
-      throw new Error("Preencha todos os campos obrigatórios.");
-    }
-
     const token = cookies().get("token");
     if (!token) {
       return { data: null, ok: false, error: "Token não encontrado." };

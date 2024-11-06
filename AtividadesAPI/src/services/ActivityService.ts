@@ -14,6 +14,7 @@ export class ActivityService {
   }
 
   async getAllActivities() {
+    
     return this.activityRepository.findAll();
   }
 

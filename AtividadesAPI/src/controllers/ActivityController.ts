@@ -10,7 +10,6 @@ export const createActivity = async (req: Request, res: Response) => {
     const activity = await activityService.createActivity(activityData);
     res.status(201).json(activity);
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Failed to create activity" });
   }
 };
@@ -48,7 +47,6 @@ export const updateActivity = async (req: Request, res: Response) => {
       res.status(404).json({ error: "Activity not found" });
     }
   } catch (error) {
-    console.log(error);
     res.status(500).json({ error: "Failed to update activity" });
   }
 };

@@ -18,7 +18,6 @@ export default async function disableActivity(id: String) {
       },
     });
 
-    console.log(response);
     if (!response.ok) {
       throw new Error("Erro ao desabilitar a atividade");
     }

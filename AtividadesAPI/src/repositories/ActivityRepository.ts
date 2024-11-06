@@ -5,7 +5,6 @@ import { IActivityRepository } from "./IActivityRepository";
 
 export class ActivityRepository implements IActivityRepository {
   async create(data: ICreateActivityData): Promise<Activity> {
-    console.log(data);
     const createData: any = {
       title: data.title,
       summary: data.summary ?? undefined,

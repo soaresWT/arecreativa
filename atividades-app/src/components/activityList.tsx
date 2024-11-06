@@ -212,7 +212,7 @@ export default function ActivityList() {
               <strong>Habilidades BNCC:</strong> {selectedActivity.bncc_skills}
             </p>
             <p>
-              <strong>Tempo Total:</strong> {selectedActivity.total_time}
+              <strong>Habilidades BNCC:</strong> {selectedActivity.bncc_skills}
             </p>
             <p>
               <strong>Recursos Necessários:</strong>{" "}

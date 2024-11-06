@@ -37,7 +37,6 @@ export const getUserByEmail = async (req: Request, res: Response) => {
 
 export const loginUser = async (req: Request, res: Response) => {
   try {
-    console.log(req.body);
     const { email, password } = req.body;
     const result = await login(email, password);
     res.status(200).json(result);

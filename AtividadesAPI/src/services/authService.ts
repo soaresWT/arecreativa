@@ -4,7 +4,6 @@ import prisma from "../config/database";
 import envConfig from "../config/env";
 const { JWT_SECRET } = envConfig;
 export const login = async (email: string, password: string) => {
-  console.log(email, password);
   const user = await prisma.user.findUnique({ where: { email } });
   if (!user) {
     throw new Error("User not found");

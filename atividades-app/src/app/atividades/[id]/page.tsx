@@ -33,7 +33,6 @@ export default function EditActivityPage({
   const handleUpdate = async (formData: any) => {
     try {
       const response = await updateActivity(id, formData);
-      console.log("response update", response);
       if (response.ok) {
         message.success("Atividade atualizada com sucesso!");
         router.push("/atividades/lista");

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Button,
   Input,
@@ -25,7 +25,7 @@ interface User {
 
 interface Props {
   action: string;
-  initialValues: any;
+  initialValues?: any;
   showExportActivityButton: boolean;
   onSubmit: (formData: any) => void;
 }
@@ -98,6 +98,10 @@ export default function ActivityForm({
 
   useEffect(() => {
     if (initialValues) {
+      const { total_time = "" } = initialValues;
+      const [value, unit] = total_time.split(" ");
+      setTimeValue(parseFloat(value));
+      setTimeUnit(unit);
       setFormValues((prev) => ({
         ...prev,
         ...initialValues,
@@ -127,13 +131,19 @@ export default function ActivityForm({
   };
 
   const handleTimeValueChange = (value: number) => {
-    setTimeValue(value);
-    updateTotalTime();
+    setTimeValue(value || 0);
+    setFormValues((prev) => ({
+      ...prev,
+      total_time: `${value || 0} ${timeUnit}`,
+    }));
   };
 
   const handleTimeUnitChange = (unit: string) => {
-    setTimeUnit(unit);
-    updateTotalTime();
+    setTimeUnit(unit || "horas");
+    setFormValues((prev) => ({
+      ...prev,
+      total_time: `${timeValue} ${unit || "horas"}`,
+    }));
   };
 
   const handleSubmit = async () => {

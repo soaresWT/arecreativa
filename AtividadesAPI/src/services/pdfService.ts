@@ -19,7 +19,6 @@ export const generatePDF = async (activityId: string) => {
   );
 
   const outputPath = path.join(__dirname, "../pdfs", `${activity.title}.pdf`);
-  console.log(activity);
   const template = await Handlebars.compile(templateSource);
   const html = template(activity);
 

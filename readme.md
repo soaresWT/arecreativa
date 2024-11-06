@@ -72,7 +72,13 @@ npm i
     JWT_SECRET="sua senha super secreta"
 ```
 
-8. Em ambos execute
+8. Inicialize o prisma com
+
+```bash
+npx prisma migrate dev --name nomeDaSuaMigration
+```
+
+9. Em ambos execute
 
 ```bash
 npm run dev

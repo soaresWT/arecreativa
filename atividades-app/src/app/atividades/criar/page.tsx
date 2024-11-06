@@ -12,7 +12,10 @@ export default function CreateActivityPage() {
       message.success("Atividade cadastrada com sucesso.");
       router.push("/atividades/lista");
     } else {
-      message.error("Erro ao cadastrar atividade. Tente novamente.");
+      console.log(response);
+      const errorMensaje =
+        response.error || "Erro ao cadastrar atividade. Tente novamente.";
+      message.error(errorMensaje);
     }
   };
 
