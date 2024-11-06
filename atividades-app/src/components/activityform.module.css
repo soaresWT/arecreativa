@@ -1,0 +1,27 @@
+.container {
+    display: flex;
+    margin-top: 80px;
+    justify-content: center;
+    align-items: flex-start;
+    height: 100%;
+    overflow: auto;
+  }
+
+  .formCard{
+    max-width: 1400px;
+  }
+  
+  .form {
+    width: 600px;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+
+  
+  .formTitle {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  

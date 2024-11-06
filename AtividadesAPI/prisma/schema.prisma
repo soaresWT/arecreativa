@@ -1,0 +1,47 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id         String     @id @default(uuid())
+  name       String
+  email      String     @unique
+  password   String
+  createdAt  DateTime   @default(now())
+  activities Activity[]
+
+  @@map("users")
+}
+
+model Activity {
+  id                 String   @id @default(uuid())
+  title              String
+  summary            String?
+  objectives         String
+  bncc_skills        String[]
+  total_time         String
+  required_resources String
+  step_by_step_guide String
+  user_id            String?
+  status             Boolean  @default(true)
+  createdAt          DateTime @default(now())
+  user               User?    @relation(fields: [user_id], references: [id])
+  pdfs               PDF[]
+
+  @@map("activities")
+}
+
+model PDF {
+  id          String   @id @default(uuid())
+  file_path   String
+  generatedAt DateTime @default(now())
+  activity_id String
+  activity    Activity @relation(fields: [activity_id], references: [id])
+
+  @@map("pdfs")
+}
